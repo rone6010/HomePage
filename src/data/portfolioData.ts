@@ -1,17 +1,17 @@
 import { PersonalInfo, SkillCategory, Project, ExperienceItem } from '../types';
 
 export const personalInfo: PersonalInfo = {
-  name: "Kevin Chen",
-  chineseName: "陳冠宇",
+  name: "Kevin Lin",
+  chineseName: "志遠",
   title: "Full-Stack & AI Engineer",
   tagline: "專注於構建直覺優雅的 Web 應用與實用的 AI 解決方案",
   bio: "熱愛開源文化與軟體工程，擅長以 React、TypeScript 與 Python 打造高效能、易擴充的數位產品。喜歡探索新技術並將想法轉化為實用的 Side Projects。",
   location: "Taipei, Taiwan",
-  email: "kevin.developer@example.com",
+  email: "rone6010@gmail.com",
   socials: {
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    twitter: "https://x.com",
+    github: "https://github.com/rone6010",
+    linkedin: "https://linkedin.com/in/rone6010",
+    twitter: "https://x.com/rone6010",
   }
 };
 
