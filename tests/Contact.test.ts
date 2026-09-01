@@ -24,7 +24,7 @@ describe('Contact Component', () => {
     const copyBtn = screen.getByRole('button', { name: /複製 Email 地址/i });
     fireEvent.click(copyBtn);
     expect(writeTextMock).toHaveBeenCalledWith(personalInfo.email);
-    expect(screen.getByText(/已複製 Email 至剪貼簿/i)).toBeInTheDocument();
+    expect(await screen.findByText(/已複製 Email 至剪貼簿/i)).toBeInTheDocument();
   });
 });
 

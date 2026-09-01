@@ -64,7 +64,9 @@ export function Navbar({ name }: NavbarProps) {
           </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="開啟選單"
+            aria-label={isMobileMenuOpen ? '關閉選單' : '開啟選單'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav-menu"
             className="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -74,7 +76,7 @@ export function Navbar({ name }: NavbarProps) {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg px-4 py-4 space-y-3">
+        <div id="mobile-nav-menu" className="md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg px-4 py-4 space-y-3">
           {navLinks.map((link) => (
             <a
               key={link.href}

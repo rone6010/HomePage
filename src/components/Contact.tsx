@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Copy, Check, Send, Sparkles } from 'lucide-react';
 import { PersonalInfo } from '../types';
 
@@ -8,11 +8,29 @@ interface ContactProps {
 
 export function Contact({ info }: ContactProps) {
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        window.clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText(info.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(info.email)
+        .then(() => {
+          setCopied(true);
+          if (timerRef.current) window.clearTimeout(timerRef.current);
+          timerRef.current = window.setTimeout(() => setCopied(false), 2500);
+        })
+        .catch(() => {
+          // Fallback if clipboard write fails
+          setCopied(false);
+        });
+    }
   };
 
   return (

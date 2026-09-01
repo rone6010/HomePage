@@ -69,6 +69,18 @@ describe('Projects Component', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
+  it('closes modal when Escape key is pressed', () => {
+    render(<Projects projects={projects} />);
+    const detailBtns = screen.getAllByRole('button', { name: /詳細資訊/i });
+    fireEvent.click(detailBtns[0]);
+    
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    // Press Escape key
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
   it('displays featured badge on featured projects', () => {
     render(<Projects projects={projects} />);
     const featuredBadges = screen.getAllByText('Featured');

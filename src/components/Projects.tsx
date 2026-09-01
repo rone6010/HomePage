@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { FolderGit2 } from 'lucide-react';
 import { Project, ProjectCategory } from '../types';
 import { ProjectCard } from './ProjectCard';
@@ -12,7 +12,11 @@ export function Projects({ projects }: ProjectsProps) {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const categories: ProjectCategory[] = ['All', 'Web App', 'AI / Data', 'Tools', 'Open Source'];
+  const categories = useMemo<ProjectCategory[]>(() => {
+    const defaultCategories: ProjectCategory[] = ['All', 'Web App', 'AI / Data', 'Tools', 'Open Source'];
+    const projectCategories = projects.map(p => p.category);
+    return Array.from(new Set([...defaultCategories, ...projectCategories])) as ProjectCategory[];
+  }, [projects]);
 
   const filteredProjects = activeCategory === 'All'
     ? projects
