@@ -1,10 +1,28 @@
 <!doctype html>
-<html lang="zh-TW" class="scroll-smooth">
+<html lang="zh-TW" class="motion-safe:scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="個人首頁與作品集：Side Projects、技術專長與工作經歷。" />
+    <meta name="theme-color" content="#f8fafc" />
     <title>個人首頁 & 作品集 | Portfolio</title>
+    <!--
+      在首次繪製前套用主題，避免深色模式使用者看到白畫面閃爍。
+      判斷邏輯需與 src/hooks/useTheme.ts 保持一致。
+    -->
+    <script>
+      (function () {
+        var saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (e) {}
+        var dark = saved === 'dark' ||
+          (saved !== 'light' && (!window.matchMedia || window.matchMedia('(prefers-color-scheme: dark)').matches));
+        if (dark) {
+          document.documentElement.classList.add('dark');
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#020617');
+        }
+      })();
+    </script>
   </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen transition-colors duration-300">
     <div id="root"></div>
