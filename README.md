@@ -1,4 +1,4 @@
-# 個人首頁與 Side Project 展示網站
+# 個人首頁與 Side Project 展示網站(for GitHub)
 
 現代化、響應式且支援深/淺色主題切換的個人作品集首頁，專為託管於 **GitHub Pages** 所設計。
 
