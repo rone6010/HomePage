@@ -1,0 +1,11 @@
+version: 2
+updates:
+  # workflow 內的 actions 以 commit SHA 釘版，由 Dependabot 每週檢查並更新 SHA 與版本註解
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns:
+          - "*"
